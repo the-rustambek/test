@@ -1,4 +1,5 @@
 import React from "react";
+import CreateModal from "./CreateModal";
 import "./Main.css";
 function MainHeader() {
   return (
@@ -10,14 +11,9 @@ function MainHeader() {
           </button>
           <button className="border-0 p-2 m-3 bg-white fw-900">Admins</button>
         </div>
-        <button
-          className="border-0 px-3 text-white me-3 rounded"
-          style={{ background: "#51438F", height: "30px" }}
-        >
-          Add Member
-        </button>
+   <CreateModal />
       </div>
-      <form className="d-flex">
+      <form className="d-flex mt-2">
         <input
           type="text"
           className="form-control mx-2 p-2 ps-3" style={{width:"160px"}}

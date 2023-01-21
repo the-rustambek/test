@@ -1,6 +1,7 @@
 import React from 'react'
-import editIcon from "../../Assets/Img/edit.svg";
-import deleteIcon from "../../Assets/Img/delete.svg";
+ import deleteIcon from "../../Assets/Img/delete.svg";
+import DeleteModal from './DeleteModal';
+import EditModal from './EditModal';
 
 export default function MainTable() {
   return (
@@ -26,9 +27,11 @@ export default function MainTable() {
         <td>@mdo</td>
         <td>active</td>
         <td>2 min ago</td>
-        <td>        <button className='border-0 p-2 me-1 bg-transparent'><img src={editIcon} alt="editIcon" /></button>
-        <button className='border-0 p-2 mx-1 bg-transparent'><img src={deleteIcon} alt="deleteIcon" /></button></td>
-      </tr>
+        <td className="d-flex">      
+          <EditModal />
+          <DeleteModal />
+          </td>
+       </tr>
       
     </tbody>
   </table></div>
