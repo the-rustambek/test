@@ -1,0 +1,5 @@
+.button-active{
+    border-bottom: 2px solid #51438F !important;
+    background-color: white;
+    font-weight: bold;
+  }

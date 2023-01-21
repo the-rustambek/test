@@ -1,5 +1,6 @@
 import React from 'react'
 import Dashboard from '../Dashboard/Dashboard';
+import Main from '../Main/Main';
 import Navbar from '../Navbar/Navbar';
 
 function Homepage() {
@@ -8,7 +9,7 @@ function Homepage() {
       <Navbar />
       <div className='d-flex '>
         <Dashboard />
-        <div>main page</div>
+        <Main />
       </div>
     </div>
   )

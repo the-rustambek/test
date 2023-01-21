@@ -11,3 +11,10 @@ ul,ol{
   width: 1140px;
   margin: 0 auto;
 }
+::-webkit-scrollbar-thumb {
+  background: #51438F;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
