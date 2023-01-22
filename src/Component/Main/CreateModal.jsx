@@ -108,7 +108,7 @@ export default function CreateModal() {
                 </div>
               </div>
               <div className="col-12 modal-footer d-flex justify-content-between">
-                <button className="btn btn-primary px-5" type="submit">Save</button>
+                <button className="btn btn-primary px-5"  type="submit">Save</button>
                 <button
                   type="button"
                   className="btn px-5 "

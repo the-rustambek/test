@@ -19,7 +19,7 @@ const initialState = {
 }
 
 export const fetchUsers = createAsyncThunk(
-    prefix,
+    usersPrefix,
     async (_, thunkAPI)=>{
         try {
             const {data} = await axios.get("posts")
@@ -35,7 +35,6 @@ export const fetchUsers = createAsyncThunk(
 
 export const createUsers = createAsyncThunk(
     createUsersPrefix,
-    
     async (formData, thunkAPI) => {
         try {
             console.log(formData,"formm")
@@ -76,6 +75,39 @@ export const deleteUsersById = createAsyncThunk(
     }
 );
 
+
+export const fetchUsersById = createAsyncThunk(
+    getOneUsersPrefix,
+    async (id, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`posts/${id}`);
+            return data;
+        } catch (e) {
+            const message = getErrorMessage(e);
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+export const updateUsersById = createAsyncThunk(
+    editUsersPrefix,
+    async (options, thunkAPI) => {
+        try {
+            const { message } = await axios.put(
+                `posts/${options.id}`,
+                options.formData,
+            );
+            notify('Users was updated successfully', 'success');
+            return message;
+        } catch (e) {
+            const message = getErrorMessage(e);
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+
+
 const usersSlice = createSlice({
     name: prefix,
     initialState,
@@ -99,7 +131,7 @@ const usersSlice = createSlice({
         });
         builder.addCase(createUsers.fulfilled, (state, action) => {
             state.singleUsersLoading = false;
-            state.companies = action.payload;
+            state.users = action.payload;
         });
         builder.addCase(createUsers.rejected, (state, action) => {
             state.singleUsersLoading = false;
@@ -111,10 +143,35 @@ const usersSlice = createSlice({
         });
         builder.addCase(deleteUsersById.fulfilled, (state, action) => {
             state.singleUsersLoading = false;
-            state.companies = action.payload;
+            state.users = action.payload;
         });
         builder.addCase(deleteUsersById.rejected, (state, action) => {
             state.singleUsersLoading = false;
+            state.singleUsersError = action.payload;
+        });
+        
+        builder.addCase(updateUsersById.pending, (state) => {
+            state.singleUsersLoading = true;
+            state.singleUsersError = undefined;
+        });
+        builder.addCase(updateUsersById.fulfilled, (state, action) => {
+            state.singleUsersLoading = false;
+            state.users = action.payload;
+        });
+        builder.addCase(updateUsersById.rejected, (state, action) => {
+            state.singleUsersLoading = false;
+            state.singleUsersError = action.payload;
+        });
+        builder.addCase(fetchUsersById.pending, (state) => {
+            state.usersLoading = true;
+            state.singleUsersError = undefined;
+        });
+        builder.addCase(fetchUsersById.fulfilled, (state, action) => {
+            state.usersLoading = false;
+            state.users = action.payload;
+        });
+        builder.addCase(fetchUsersById.rejected, (state, action) => {
+            state.usersLoading = false;
             state.singleUsersError = action.payload;
         });
     }

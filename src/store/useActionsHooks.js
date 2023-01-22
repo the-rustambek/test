@@ -1,13 +1,15 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchUsers, createUsers,deleteUsersById } from './usersSlice';
+import { fetchUsers, createUsers,deleteUsersById, updateUsersById, fetchUsersById } from './usersSlice';
  
 
 const actions = {
     fetchUsers,
     createUsers,
-    deleteUsersById
+    deleteUsersById,
+    updateUsersById,
+    fetchUsersById
 };
 
 const useActionsHooks = () => {

@@ -6,7 +6,7 @@ import EditModal from './EditModal';
 
 export default function MainTable() {
   const [data, setData] = React.useState([]);
-const [id,setId]=useState()
+const [click,setClick]=useState("")
   const { users, usersLoading } = useSelector(
     (state) => state.users
 );
@@ -19,6 +19,8 @@ useEffect(() => {
 useEffect(() => {
   if (Array.isArray(users?.data)) setData(users.data);
 }, [users, usersLoading]);
+
+console.log(click,"clickk");
 
    return (
     <div className="p-3 w-100" style={{ background: "#f6f6f6" }}><table className="table text-secondary">
@@ -44,9 +46,9 @@ useEffect(() => {
               <td>{e.body.slice(0,3)}@gmail.com</td>
               <td>active</td>
               <td>{e.id} min ago</td>
-              <td className="d-flex">      
-                <EditModal />
-                <DeleteModal onClick={(e) => setId(e.id)} usersId={id}/>
+              <td className="d-flex" onClick={()=>setClick(e.id)}>      
+                <EditModal        id={click}/>
+                <DeleteModal  id={e.id}/>
                 </td>
              </tr>
       ))}
