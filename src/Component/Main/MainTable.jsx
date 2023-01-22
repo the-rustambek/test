@@ -1,9 +1,16 @@
 import React from 'react'
- import deleteIcon from "../../Assets/Img/delete.svg";
-import DeleteModal from './DeleteModal';
+import { useSelector } from 'react-redux';
+import { userActions } from '../../store/usersSlice';
+ import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
 
 export default function MainTable() {
+  const { users, usersLoading } = useSelector(
+    (state) => console.log(state,"syttausers")
+);
+// const { fetchUsers } = userActions();
+// console.log(fetchUsers,"userss");
+
   return (
     <div className="p-3 w-100" style={{ background: "#f6f6f6" }}><table className="table text-secondary">
     <thead>

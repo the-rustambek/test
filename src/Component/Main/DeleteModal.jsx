@@ -16,7 +16,7 @@ export default function DeleteModal() {
       <div
         className="modal fade"
         id="exampleModalEdit2"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel2"
         aria-hidden="true"
       >

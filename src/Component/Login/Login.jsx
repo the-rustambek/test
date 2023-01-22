@@ -35,7 +35,7 @@ const Login = () => {
             <div style={{ height: "100vh" }} className=" d-flex justify-content-evenly align-items-center  ">
                 <Form noValidate  className="w-25" onSubmit={formik.handleSubmit} >
                     <h2 className="text-center mb-4 pb-2" style={{ color: "#838383" }}>Login</h2>
-                    <Form.Group className="w-100 my-3" as={Col} md="4" controlId="validationCustom01">
+                    <Form.Group className="w-100 my-3" as={Col} md="4" controlid="validationCustom01">
                         <Form.Control
                             required className='px-4 py-3'
                             type="text"
@@ -45,7 +45,7 @@ const Login = () => {
                             <div>{formik.errors.name}</div>
                         ) : null}
                      </Form.Group>
-                    <Form.Group className="w-100 my-3" as={Col} md="4" controlId="validationCustom02">
+                    <Form.Group className="w-100 my-3" as={Col} md="4" controlid="validationCustom02">
                         <Form.Control
                             required className='px-4 py-3'
                             type="text"
@@ -55,7 +55,7 @@ const Login = () => {
                             <div>{formik.errors.phone_number}</div>
                         ) : null}
                      </Form.Group>
-                    <Form.Group className="w-100 my-3" as={Col} md="4" controlId="validationCustom03">
+                    <Form.Group className="w-100 my-3" as={Col} md="4" controlid="validationCustom03">
                         <Form.Control
                             required className='px-4 py-3'
                             type="email"

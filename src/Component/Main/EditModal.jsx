@@ -16,7 +16,7 @@ export default function EditModal() {
       <div
         className="modal fade"
         id="exampleModalEdit"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -36,61 +36,61 @@ export default function EditModal() {
             <div className="modal-body">
               <form className="row g-3 needs-validation" noValidate>
                 <div className="col-12">
-                  <label for="validationCustom01" className="form-label">
+                  <label htmlFor="validationCustom01" className="form-label">
                     Name
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    controlId="validationCustom01"
+                    controlid="validationCustom01"
                     required
                   />
                   <div className="valid-feedback">Looks good!</div>
                 </div>
                 <div className="col-12">
-                  <label for="validationCustom02" className="form-label">
+                  <label htmlFor="validationCustom02" className="form-label">
                     Phone
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    controlId="validationCustom02"
+                    controlid="validationCustom02"
                     required
                   />
                   <div className="valid-feedback">Looks good!</div>
                 </div>
                 <div className="col-12">
-                  <label for="validationCustom02" className="form-label">
+                  <label htmlFor="validationCustom02" className="form-label">
                     Email
                   </label>
                   <input
                     type="email"
                     className="form-control"
-                    controlId="validationCustom03"
+                    controlid="validationCustom03"
                     required
                   />
                   <div className="valid-feedback">Looks good!</div>
                 </div>
                 <div className="col-12">
-                  <div class="form-check form-switch">
+                  <div className="form-check form-switch">
                     <label
-                      class="form-check-label"
-                      for="flexSwitchCheckChecked"
+                      className="form-check-label"
+                      htmlFor="flexSwitchCheckChecked"
                     >
                       Status
                     </label>
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
                       role="switch"
-                      controlId="flexSwitchCheckChecked"
-                      checked
+                      controlid="flexSwitchCheckChecked"
+                      defaultChecked
                     />
                   </div>
                 </div>
                 <div className="col-12">
                   <div className="form-check ms-0 ps-0">
-                    <label for="formFile" className="form-label">
+                    <label htmlFor="formFile" className="form-label">
                       Photo
                     </label>
                     <input className="form-control" type="file" id="formFile" />
