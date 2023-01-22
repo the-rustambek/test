@@ -1,7 +1,28 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import deleteIcon from "../../Assets/Img/delete.svg";
+import useActionsHooks from "../../store/useActionsHooks";
 
-export default function DeleteModal() {
+export default function DeleteModal({usersId}) {
+  const { fetchUsers, deleteUsersById } = useActionsHooks();
+    const [data, setData] = React.useState([]);
+
+  const { users } = useSelector(
+    (state) => state.users
+);
+
+  React.useEffect(() => {
+      fetchUsers();
+  }, [fetchUsers]);
+
+  React.useEffect(() => {
+      if (Array.isArray(users?.data)) setData(users.data);
+  }, [users]);
+
+ 
+  const handleDelete = (userId) => {
+      deleteUsersById(userId);
+  };
   return (
     <div>
       <button
@@ -35,7 +56,10 @@ export default function DeleteModal() {
             </div>
             <div className="modal-body">
             <div className="col-12 modal-footer d-flex justify-content-between">
-                <button className="btn btn-primary px-5" type="button">Ok</button>
+                <button      onClick={handleDelete.bind(
+                                                            null,
+                                                            usersId
+                                                        )} className="btn btn-primary px-5" type="button">Ok</button>
                 <button
                   type="button"
                   className="btn px-5 "

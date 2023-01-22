@@ -4,10 +4,10 @@ import { getErrorMessage, notify } from "./utils";
  
  const prefix = 'users';
  const usersPrefix = prefix;
- const editUsersPrefix = `${prefix}/posts/:id`;
- const createUsersPrefix = `${prefix}/posts`;
- const deleteUsersPrefix = `${prefix}/posts/:id`;
- const getOneUsersPrefix = `${prefix}/posts/:id`;
+ const editUsersPrefix = `${prefix}/edit`;
+ const createUsersPrefix = `${prefix}/create`;
+ const deleteUsersPrefix = `${prefix}/delete`;
+ const getOneUsersPrefix = `${prefix}/getOne`;
 
 const initialState = {
     users: [],
@@ -48,8 +48,6 @@ export const createUsers = createAsyncThunk(
                         'Content-Type':  'multipart/form-data' 
                     },
                 }
-    
-
              );
             notify('Users was created successfully', 'success');
             return data;
@@ -60,6 +58,23 @@ export const createUsers = createAsyncThunk(
     }
 );
 
+
+export const deleteUsersById = createAsyncThunk(
+    deleteUsersPrefix,
+    async (id, thunkAPI) => {
+        console.log(id,"idddd")
+        try {
+            const { message } = await axios.delete(
+                `posts/${id}`,
+             );
+            notify('User was deleted  successfully', 'success');
+            return message;
+        } catch (e) {
+            const message = getErrorMessage(e);
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
 
 const usersSlice = createSlice({
     name: prefix,
@@ -87,6 +102,18 @@ const usersSlice = createSlice({
             state.companies = action.payload;
         });
         builder.addCase(createUsers.rejected, (state, action) => {
+            state.singleUsersLoading = false;
+            state.singleUsersError = action.payload;
+        });
+        builder.addCase(deleteUsersById.pending, (state) => {
+            state.singleUsersLoading = true;
+            state.singleUsersError = undefined;
+        });
+        builder.addCase(deleteUsersById.fulfilled, (state, action) => {
+            state.singleUsersLoading = false;
+            state.companies = action.payload;
+        });
+        builder.addCase(deleteUsersById.rejected, (state, action) => {
             state.singleUsersLoading = false;
             state.singleUsersError = action.payload;
         });

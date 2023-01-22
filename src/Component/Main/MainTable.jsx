@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import useActionsHooks from '../../store/useActionsHooks';
   import DeleteModal from './DeleteModal';
@@ -6,7 +6,7 @@ import EditModal from './EditModal';
 
 export default function MainTable() {
   const [data, setData] = React.useState([]);
-
+const [id,setId]=useState()
   const { users, usersLoading } = useSelector(
     (state) => state.users
 );
@@ -20,8 +20,7 @@ useEffect(() => {
   if (Array.isArray(users?.data)) setData(users.data);
 }, [users, usersLoading]);
 
- 
-  return (
+   return (
     <div className="p-3 w-100" style={{ background: "#f6f6f6" }}><table className="table text-secondary">
     <thead>
       <tr>
@@ -47,7 +46,7 @@ useEffect(() => {
               <td>{e.id} min ago</td>
               <td className="d-flex">      
                 <EditModal />
-                <DeleteModal />
+                <DeleteModal onClick={(e) => setId(e.id)} usersId={id}/>
                 </td>
              </tr>
       ))}
