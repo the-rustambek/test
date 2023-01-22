@@ -1,19 +1,18 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-    fetchUsers
-} from './crudSlice';
+import { fetchUsers } from './usersSlice';
+ 
 
 const actions = {
     fetchUsers
 };
 
-const useActions = () => {
+const useActionsHooks = () => {
     const dispatch = useDispatch();
     return useMemo(() => {
         return bindActionCreators(actions, dispatch);
     }, [dispatch]);
 };
 
-export default useActions;
+export default useActionsHooks;

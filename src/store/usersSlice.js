@@ -4,7 +4,7 @@ import { getErrorMessage } from "./utils";
  
 
 
-const users = "users;"
+const users = "users"
 const initialState = {
     users: [],
     usersLoading: false,
@@ -15,15 +15,16 @@ export const fetchUsers = createAsyncThunk(
     async (_, thunkAPI)=>{
         try {
             const {data} = await axios.get("posts")
-            console.log(data,"dataaa");
-            return  data;
+            console.log(data,"dataaa userslice")
+             return  data;
         } catch (error) {
             console.log(error,"error chiqdi oka")
             const message = getErrorMessage(error);
             return thunkAPI.rejectWithValue(message);
         }
     }
-)
+);
+
 const usersSlice = createSlice({
     name: users,
     initialState,

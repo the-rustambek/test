@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { userActions } from '../../store/usersSlice';
- import DeleteModal from './DeleteModal';
+import useActionsHooks from '../../store/useActionsHooks';
+  import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
 
 export default function MainTable() {
+  const [data, setData] = React.useState([]);
+
   const { users, usersLoading } = useSelector(
-    (state) => console.log(state,"syttausers")
+    (state) => state.users
 );
-// const { fetchUsers } = userActions();
-// console.log(fetchUsers,"userss");
+ const { fetchUsers } = useActionsHooks();
+ 
+useEffect(() => {
+  fetchUsers();
+}, [fetchUsers]);
+
+useEffect(() => {
+  if (Array.isArray(users?.data)) setData(users.data);
+}, [users, usersLoading]);
+
+console.log(data,"dataaa");
 
   return (
     <div className="p-3 w-100" style={{ background: "#f6f6f6" }}><table className="table text-secondary">
@@ -24,22 +35,23 @@ export default function MainTable() {
         <th scope="col">Action</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <th scope="row">
-            <img src="https://github.com/mdo.png" width="36"className='rounded ' height="30" alt="table img" />
-        </th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>active</td>
-        <td>2 min ago</td>
-        <td className="d-flex">      
-          <EditModal />
-          <DeleteModal />
-          </td>
-       </tr>
-      
+    <tbody >
+      {users.map((e,i)=>(
+              <tr key={i} >
+              <th scope="row">
+                  <img src="https://github.com/mdo.png" width="36"className='rounded ' height="30" alt="table img" />
+              </th>
+              <td>{e.title.slice(0,8)}</td>
+              <td>+9989314877{e.id}</td>
+              <td>{e.body.slice(0,3)}@gmail.com</td>
+              <td>active</td>
+              <td>{e.id} min ago</td>
+              <td className="d-flex">      
+                <EditModal />
+                <DeleteModal />
+                </td>
+             </tr>
+      ))}
     </tbody>
   </table></div>
   )
