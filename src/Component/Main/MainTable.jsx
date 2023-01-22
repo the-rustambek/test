@@ -20,8 +20,7 @@ useEffect(() => {
   if (Array.isArray(users?.data)) setData(users.data);
 }, [users, usersLoading]);
 
-console.log(data,"dataaa");
-
+ 
   return (
     <div className="p-3 w-100" style={{ background: "#f6f6f6" }}><table className="table text-secondary">
     <thead>
