@@ -2,8 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getErrorMessage } from "./utils";
  
-
-
 const users = "users"
 const initialState = {
     users: [],
@@ -15,7 +13,6 @@ export const fetchUsers = createAsyncThunk(
     async (_, thunkAPI)=>{
         try {
             const {data} = await axios.get("posts")
-            console.log(data,"dataaa userslice")
              return  data;
         } catch (error) {
             console.log(error,"error chiqdi oka")
