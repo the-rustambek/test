@@ -26,8 +26,8 @@ export const fetchUsers = createAsyncThunk(
             const {data} = await axios.get("users")
              return  data;
         } catch (error) {
-            console.log(error,"error chiqdi oka")
             const message = getErrorMessage(error);
+            notify(message, 'error')
             return thunkAPI.rejectWithValue(message);
         }
     }
@@ -63,14 +63,15 @@ export const deleteUsersById = createAsyncThunk(
     deleteUsersPrefix,
     async (id, thunkAPI) => {
         try {
-            const message = await axios.delete(
+            const {message} = await axios.delete(
                 `users/${id}`,
              );
-            notify('User was deleted  successfully', message.status);
+            notify('User was deleted  successfully', 'success');
             window.location.reload();
-            return message.message;
+            return message;
         } catch (e) {
             const message = getErrorMessage(e);
+            notify(message, 'error')
             return thunkAPI.rejectWithValue(message);
         }
     }
@@ -85,6 +86,7 @@ export const fetchUsersById = createAsyncThunk(
             return data;
         } catch (e) {
             const message = getErrorMessage(e);
+            notify(message, 'error')
             return thunkAPI.rejectWithValue(message);
         }
     }
@@ -102,6 +104,7 @@ export const updateUsersById = createAsyncThunk(
             return message;
         } catch (e) {
             const message = getErrorMessage(e);
+            notify(message, 'error')
             return thunkAPI.rejectWithValue(message);
         }
     }
