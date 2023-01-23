@@ -4,19 +4,18 @@ import editIcon from "../../Assets/Img/edit.svg";
 import useActionsHooks from "../../store/useActionsHooks";
 
 export default function EditModal({id}) {
-  // console.log(id,"iddd")
-
+   const counter = useSelector((state) => state.counter.value);
+   
   const [open, setOpen] = React.useState(false);
   const { updateUsersById, fetchUsersById } = useActionsHooks();
   const {
       users,
-      singleUsersError: error,
-  } = useSelector((state) => state.users);
-
-  const handleClickOpen = () => {
+   } = useSelector((state) => state.users);
+ 
+   const handleClickOpen = () => {
       setOpen(true);
       clear();
-      fetchUsersById(id);
+      fetchUsersById(counter);
   };
 
   const handleClose = () => {
@@ -38,7 +37,7 @@ export default function EditModal({id}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const formData = data.get('img_src')
+     const formData = data.get('img_src')
         ? {
               img_src: data.get('img_src'),
               title: data.get('title'),
@@ -52,23 +51,20 @@ export default function EditModal({id}) {
           };
           console.log(users,"usererr 53-qator");
         updateUsersById({
-        id: users.id,
+        id: counter,
         formData,
     });
     handleClose();
 };
 
-// console.log(users,"userss")
-
+ 
   return (
     <div>
       <button
         type="button"
         className="border-0 p-2 me-1 bg-transparent"
         style={{ background: "#51438F", height: "30px" }}
-        // data-bs-toggle="modal"
-        // data-bs-target="#exampleModalEdit"
-        onClick={handleClickOpen}
+          onClick={handleClickOpen}
       >
         <img src={editIcon} alt="editIcon" />
       </button>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { counterAction } from '../../store/clickIdSlice';
 import useActionsHooks from '../../store/useActionsHooks';
   import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
 
 export default function MainTable() {
   const [data, setData] = React.useState([]);
-const [click,setClick]=useState("")
   const { users, usersLoading } = useSelector(
     (state) => state.users
 );
@@ -18,9 +18,15 @@ useEffect(() => {
 
 useEffect(() => {
   if (Array.isArray(users?.data)) setData(users.data);
-}, [users, usersLoading]);
+}, [users, usersLoading, fetchUsers]);
 
-console.log(click,"clickk");
+ 
+// id reducer
+  
+const dispatch = useDispatch(); 
+ const idClickHandler = (amount) =>{
+  dispatch(counterAction.increment(amount));
+}
 
    return (
     <div className="p-3 w-100" style={{ background: "#f6f6f6" }}><table className="table text-secondary">
@@ -36,19 +42,21 @@ console.log(click,"clickk");
       </tr>
     </thead>
     <tbody >
-      {users.map((e,i)=>(
+      {users
+       && users.map((e,i)=>(
               <tr key={i} >
               <th scope="row">
                   <img src="https://github.com/mdo.png" width="36"className='rounded ' height="30" alt="table img" />
               </th>
-              <td>{e.title.slice(0,8)}</td>
-              <td>+9989314877{e.id}</td>
-              <td>{e.body.slice(0,3)}@gmail.com</td>
+              <td>{e.name}</td>
+              <td>{e.phone}</td>
+              <td>{e.email}</td>
               <td>active</td>
               <td>{e.id} min ago</td>
-              <td className="d-flex" onClick={()=>setClick(e.id)}>      
-                <EditModal        id={click}/>
-                <DeleteModal  id={e.id}/>
+              <td className="d-flex" onClick={()=>idClickHandler(e.id)}>      
+                <EditModal />
+ 
+                <DeleteModal />
                 </td>
              </tr>
       ))}

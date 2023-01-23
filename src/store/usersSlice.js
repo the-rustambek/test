@@ -22,7 +22,7 @@ export const fetchUsers = createAsyncThunk(
     usersPrefix,
     async (_, thunkAPI)=>{
         try {
-            const {data} = await axios.get("posts")
+            const {data} = await axios.get("users")
              return  data;
         } catch (error) {
             console.log(error,"error chiqdi oka")
@@ -37,10 +37,8 @@ export const createUsers = createAsyncThunk(
     createUsersPrefix,
     async (formData, thunkAPI) => {
         try {
-            console.log(formData,"formm")
-
             const { data } = await axios.post(
-                'posts',
+                'users',
                 formData,
                 {
                     headers: {
@@ -64,7 +62,7 @@ export const deleteUsersById = createAsyncThunk(
         console.log(id,"idddd")
         try {
             const { message } = await axios.delete(
-                `posts/${id}`,
+                `users/${id}`,
              );
             notify('User was deleted  successfully', 'success');
             return message;
@@ -80,7 +78,7 @@ export const fetchUsersById = createAsyncThunk(
     getOneUsersPrefix,
     async (id, thunkAPI) => {
         try {
-            const { data } = await axios.get(`posts/${id}`);
+            const { data } = await axios.get(`users/${id}`);
             return data;
         } catch (e) {
             const message = getErrorMessage(e);
@@ -92,9 +90,9 @@ export const fetchUsersById = createAsyncThunk(
 export const updateUsersById = createAsyncThunk(
     editUsersPrefix,
     async (options, thunkAPI) => {
-        try {
+         try {
             const { message } = await axios.put(
-                `posts/${options.id}`,
+                `users/${options.id}`,
                 options.formData,
             );
             notify('Users was updated successfully', 'success');
