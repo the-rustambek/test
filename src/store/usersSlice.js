@@ -85,9 +85,9 @@ export const fetchUsersById = createAsyncThunk(
             const { data } = await axios.get(`users/${id}`);
             return data;
         } catch (e) {
-            const message = getErrorMessage(e);
-            notify(message, 'error')
-            return thunkAPI.rejectWithValue(message);
+            // const message = getErrorMessage(e);
+            // notify(message, 'error')
+            // return thunkAPI.rejectWithValue(message);
         }
     }
 );
