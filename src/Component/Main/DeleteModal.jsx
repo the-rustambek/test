@@ -2,28 +2,50 @@ import React from "react";
 import { useSelector } from "react-redux";
 import deleteIcon from "../../Assets/Img/delete.svg";
 import useActionsHooks from "../../store/useActionsHooks";
+import Modal from 'react-modal';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: "30%"
+  },
+};
 export default function DeleteModal() {
-     const counter = useSelector((state) => state.counter.value);
-
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    subtitle.style.color = '#f00';
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  const counter = useSelector((state) => state.counter.value);
   const { fetchUsers, deleteUsersById } = useActionsHooks();
-    const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState([]);
 
   const { users } = useSelector(
     (state) => state.users
-);
+  );
 
   React.useEffect(() => {
-      fetchUsers();
+    fetchUsers();
   }, [fetchUsers]);
 
   React.useEffect(() => {
-      if (Array.isArray(users?.data)) setData(users.data);
+    if (Array.isArray(users?.data)) setData(users.data);
   }, [users]);
 
- 
+
   const handleDelete = (userId) => {
-      deleteUsersById(userId);
+    deleteUsersById(userId);
   };
 
   return (
@@ -32,23 +54,22 @@ export default function DeleteModal() {
         type="button"
         className="border-0 p-2 me-1 bg-transparent"
         style={{ background: "#51438F", height: "30px" }}
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModalEdit2"
+        onClick={openModal}
       >
         <img src={deleteIcon} alt="editIcon" />
       </button>
-      <div
-        className="modal fade"
-        id="exampleModalEdit2"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel2"
-        aria-hidden="true"
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel2">
-              Are you sure to delete this member? 
+                Are you sure to delete this member?
               </h1>
               <button
                 type="button"
@@ -58,15 +79,15 @@ export default function DeleteModal() {
               ></button>
             </div>
             <div className="modal-body">
-            <div className="col-12 modal-footer d-flex justify-content-between">
-                <button      onClick={handleDelete.bind(
-                                                            null,
-                                                            counter
-                                                        )} className="btn btn-primary px-5" type="button">Ok</button>
+              <div className="col-12 modal-footer d-flex justify-content-between">
+                <button onClick={handleDelete.bind(
+                  null,
+                  counter
+                )} className="btn btn-primary px-5" type="button">Ok</button>
                 <button
                   type="button"
                   className="btn px-5 "
-                  data-bs-dismiss="modal"
+                  onClick={closeModal}
                 >
                   Cancel
                 </button>
@@ -75,7 +96,7 @@ export default function DeleteModal() {
             </div>
           </div>
         </div>
-      </div>
+      </Modal>
     </div>
   );
 }
