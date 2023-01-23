@@ -74,11 +74,10 @@ export default function DeleteModal() {
               <button
                 type="button"
                 className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                 onClick={closeModal}
+                ></button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body mt-5">
               <div className="col-12 modal-footer d-flex justify-content-between">
                 <button onClick={handleDelete.bind(
                   null,
