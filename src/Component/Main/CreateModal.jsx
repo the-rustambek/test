@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import useActionsHooks from "../../store/useActionsHooks";
 import Modal from 'react-modal';
 
