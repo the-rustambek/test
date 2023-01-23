@@ -1,24 +1,34 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import useActionsHooks from "../../store/useActionsHooks";
+import Modal from 'react-modal';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: "30%"
+  },
+};
 export default function CreateModal() {
-  const [, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-      setOpen(true);
-      clear();
-  };
-
-  const handleClose = () => {
-      setOpen(false);
-      clear();
-  };
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+    clear();
+  }
+  function afterOpenModal() {
+    subtitle.style.color = '#f00';
+  }
+  function closeModal() {
+    setIsOpen(false);
+    clear();
+  }
   const { createUsers } = useActionsHooks();
-  const {  } = useSelector(
-      (state) => state.users
-  );
-
   function clear() {
       let inputs = document.querySelectorAll('input');
       for (let i = 0; i < inputs.length; i++) {
@@ -29,9 +39,6 @@ export default function CreateModal() {
           textAreas[i].value = null;
       }
   }
-
- 
-
   const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
@@ -41,7 +48,7 @@ export default function CreateModal() {
           phone: data.get('phone'),
           body: data.get('body'),
        });
-      handleClose();
+      closeModal();
   };
   return (
     <div>
@@ -49,17 +56,15 @@ export default function CreateModal() {
         type="button"
         className="border-0 px-3 text-white me-3 rounded"
         style={{ background: "#51438F", height: "30px" }}
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
+        onClick={openModal} >
         Add member
       </button>
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -69,11 +74,10 @@ export default function CreateModal() {
               <button
                 type="button"
                 className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
+                onClick={closeModal}
               ></button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body mt-3">
               <form className="row g-3 needs-validation" noValidate onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="col-12">
                 <label htmlFor="validationCustom01" className="form-label">Name</label>
@@ -106,12 +110,12 @@ export default function CreateModal() {
                   </div>
                 </div>
               </div>
-              <div className="col-12 modal-footer d-flex justify-content-between">
+              <div className="col-12 modal-footer d-flex justify-content-between mt-3 pt-4 ms-2">
                 <button className="btn btn-primary px-5"  type="submit">Save</button>
                 <button
                   type="button"
                   className="btn px-5 "
-                  data-bs-dismiss="modal"
+                  onClick={closeModal}
                 >
                   Cancel
                 </button>
@@ -121,7 +125,7 @@ export default function CreateModal() {
 
           </div>
         </div>
-      </div>
+      </Modal>
     </div>
   );
 }

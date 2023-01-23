@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { getErrorMessage, notify } from "./utils";
  
  const prefix = 'users';
@@ -48,7 +47,7 @@ export const createUsers = createAsyncThunk(
                 }
              );             
             notify('Users was created successfully', 'success');
-            window.location.reload();
+            // window.location.reload();
             return data.data;
         } catch (e) {
             const message = getErrorMessage(e);
@@ -67,7 +66,7 @@ export const deleteUsersById = createAsyncThunk(
                 `users/${id}`,
              );
             notify('User was deleted  successfully', 'success');
-            window.location.reload();
+            // window.location.reload();
             return message;
         } catch (e) {
             const message = getErrorMessage(e);
