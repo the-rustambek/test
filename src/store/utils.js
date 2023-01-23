@@ -9,7 +9,7 @@ export const getErrorMessage = (e) => {
     return message;
 };
 
-export const notify = (message, type) => {
+export const notify = (message, type,) => {
     if (type === 'success') {
         return toast.success(message, {
             position: toast.POSITION.TOP_RIGHT,

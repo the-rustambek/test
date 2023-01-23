@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import deleteIcon from "../../Assets/Img/delete.svg";
 import useActionsHooks from "../../store/useActionsHooks";
 
-export default function DeleteModal({usersId}) {
+export default function DeleteModal() {
+     const counter = useSelector((state) => state.counter.value);
+
   const { fetchUsers, deleteUsersById } = useActionsHooks();
     const [data, setData] = React.useState([]);
 
@@ -23,6 +25,7 @@ export default function DeleteModal({usersId}) {
   const handleDelete = (userId) => {
       deleteUsersById(userId);
   };
+
   return (
     <div>
       <button
@@ -58,7 +61,7 @@ export default function DeleteModal({usersId}) {
             <div className="col-12 modal-footer d-flex justify-content-between">
                 <button      onClick={handleDelete.bind(
                                                             null,
-                                                            usersId
+                                                            counter
                                                         )} className="btn btn-primary px-5" type="button">Ok</button>
                 <button
                   type="button"

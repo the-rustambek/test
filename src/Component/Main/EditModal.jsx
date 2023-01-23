@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import editIcon from "../../Assets/Img/edit.svg";
 import useActionsHooks from "../../store/useActionsHooks";
 
-export default function EditModal({id}) {
+export default function EditModal() {
    const counter = useSelector((state) => state.counter.value);
    
   const [open, setOpen] = React.useState(false);
@@ -49,8 +49,7 @@ export default function EditModal({id}) {
               body: data.get('body'),
               phone: data.get('phone'),
           };
-          console.log(users,"usererr 53-qator");
-        updateUsersById({
+         updateUsersById({
         id: counter,
         formData,
     });
@@ -65,12 +64,14 @@ export default function EditModal({id}) {
         className="border-0 p-2 me-1 bg-transparent"
         style={{ background: "#51438F", height: "30px" }}
           onClick={handleClickOpen}
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModalEdit5"
       >
         <img src={editIcon} alt="editIcon" />
       </button>
       <div
         className="modal fade"
-        id="exampleModalEdit"
+        id="exampleModalEdit5"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { getErrorMessage, notify } from "./utils";
  
  const prefix = 'users';
@@ -37,7 +38,7 @@ export const createUsers = createAsyncThunk(
     createUsersPrefix,
     async (formData, thunkAPI) => {
         try {
-            const { data } = await axios.post(
+            const data = await axios.post(
                 'users',
                 formData,
                 {
@@ -45,11 +46,13 @@ export const createUsers = createAsyncThunk(
                         'Content-Type':  'multipart/form-data' 
                     },
                 }
-             );
+             );             
             notify('Users was created successfully', 'success');
-            return data;
+            window.location.reload();
+            return data.data;
         } catch (e) {
             const message = getErrorMessage(e);
+            notify(message, 'error')
             return thunkAPI.rejectWithValue(message);
         }
     }
@@ -59,13 +62,13 @@ export const createUsers = createAsyncThunk(
 export const deleteUsersById = createAsyncThunk(
     deleteUsersPrefix,
     async (id, thunkAPI) => {
-        console.log(id,"idddd")
         try {
-            const { message } = await axios.delete(
+            const message = await axios.delete(
                 `users/${id}`,
              );
-            notify('User was deleted  successfully', 'success');
-            return message;
+            notify('User was deleted  successfully', message.status);
+            window.location.reload();
+            return message.message;
         } catch (e) {
             const message = getErrorMessage(e);
             return thunkAPI.rejectWithValue(message);

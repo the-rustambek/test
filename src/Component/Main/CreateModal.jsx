@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import useActionsHooks from "../../store/useActionsHooks";
 
 export default function CreateModal() {
-  const [open, setOpen] = React.useState(false);
+  const [, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
       setOpen(true);
@@ -15,7 +15,7 @@ export default function CreateModal() {
       clear();
   };
   const { createUsers } = useActionsHooks();
-  const { singleUsersError: error } = useSelector(
+  const {  } = useSelector(
       (state) => state.users
   );
 
@@ -35,7 +35,6 @@ export default function CreateModal() {
   const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
-      console.log(data.get("img_src"))
       createUsers({
           img_src: data.get('img_src'),
           title: data.get('title'),

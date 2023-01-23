@@ -4,6 +4,7 @@ import { counterAction } from '../../store/clickIdSlice';
 import useActionsHooks from '../../store/useActionsHooks';
   import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
+ import {get} from "lodash";
 
 export default function MainTable() {
   const [data, setData] = React.useState([]);
@@ -17,19 +18,18 @@ useEffect(() => {
 }, [fetchUsers]);
 
 useEffect(() => {
-  if (Array.isArray(users?.data)) setData(users.data);
+  if (Array.isArray(users?.data)) setData(users?.data);
 }, [users, usersLoading, fetchUsers]);
 
- 
-// id reducer
-  
+// id reducer  
 const dispatch = useDispatch(); 
  const idClickHandler = (amount) =>{
   dispatch(counterAction.increment(amount));
 }
-
-   return (
-    <div className="p-3 w-100" style={{ background: "#f6f6f6" }}><table className="table text-secondary">
+    return (
+    <div className="p-3 w-100" style={{ background: "#f6f6f6" }}>
+      
+      <table className="table text-secondary">
     <thead>
       <tr>
         <th scope="col">Photo</th>
@@ -42,8 +42,8 @@ const dispatch = useDispatch();
       </tr>
     </thead>
     <tbody >
-      {users
-       && users.map((e,i)=>(
+      {users?.length ? 
+        users?.map((e,i)=>(
               <tr key={i} >
               <th scope="row">
                   <img src="https://github.com/mdo.png" width="36"className='rounded ' height="30" alt="table img" />
@@ -59,7 +59,7 @@ const dispatch = useDispatch();
                 <DeleteModal />
                 </td>
              </tr>
-      ))}
+      )): "Sizda hali userlar yo'q"}
     </tbody>
   </table></div>
   )
