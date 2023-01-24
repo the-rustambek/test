@@ -15,8 +15,8 @@ const customStyles = {
     width: "30%"
   },
 };
-
 export default function DeleteModal() {
+  /**************************react modal********************** */
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
@@ -28,14 +28,14 @@ export default function DeleteModal() {
   function closeModal() {
     setIsOpen(false);
   }
+  /**********************function****************************** */
   const counter = useSelector((state) => state.counter.value);
   const { fetchUsers, deleteUsersById } = useActionsHooks();
-  const [data, setData] = React.useState([]);
+  const [, setData] = React.useState([]);
 
   const { users } = useSelector(
     (state) => state.users
   );
-
   React.useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
@@ -44,19 +44,17 @@ export default function DeleteModal() {
     if (Array.isArray(users?.data)) setData(users.data);
   }, [users]);
 
-
   const handleDelete = (userId) => {
     deleteUsersById(userId);
   };
-
+/************************** main code ********************************* */
   return (
     <div>
       <button
         type="button"
         className="border-0 p-2 me-1 bg-transparent"
         style={{ background: "#51438F", height: "30px" }}
-        onClick={openModal}
-      >
+        onClick={openModal}>
         <img src={deleteIcon} alt="editIcon" />
       </button>
       <Modal
@@ -64,8 +62,7 @@ export default function DeleteModal() {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
-      >
+        contentLabel="Example Modal">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -75,8 +72,7 @@ export default function DeleteModal() {
               <button
                 type="button"
                 className="btn-close"
-                 onClick={closeModal}
-                ></button>
+                 onClick={closeModal}></button>
             </div>
             <div className="modal-body mt-5">
               <div className="col-12 modal-footer d-flex justify-content-between">
@@ -87,12 +83,10 @@ export default function DeleteModal() {
                 <button
                   type="button"
                   className="btn px-5 "
-                  onClick={closeModal}
-                >
+                  onClick={closeModal}>
                   Cancel
                 </button>
               </div>
-
             </div>
           </div>
         </div>

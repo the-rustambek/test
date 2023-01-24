@@ -59,8 +59,7 @@ export default function CreateModal() {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
-      >
+        contentLabel="Example Modal">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -69,40 +68,26 @@ export default function CreateModal() {
               <button
                 type="button"
                 className="btn-close"
-                onClick={closeModal}
-              ></button>
+                onClick={closeModal}></button>
             </div>
             <div className="modal-body mt-3">
               <form className="row g-3 needs-validation" noValidate onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="col-12">
                 <label htmlFor="validationCustom01" className="form-label">Name</label>
                 <input  name="title"  type="text" className="form-control" controlid="validationCustom01" required />
-                <div className="valid-feedback">
-                  Looks good!
-                </div>
               </div>
               <div className="col-12">
                 <label htmlFor="validationCustom02" className="form-label">Phone</label>
                 <input type="text" name="phone" className="form-control" controlid="validationCustom02" required />
-                <div className="valid-feedback">
-                  Looks good!
-                </div>
               </div>
               <div className="col-12">
                 <label htmlFor="validationCustom02" className="form-label">Email</label>
                 <input type="email" name="body" className="form-control" controlid="validationCustom03" required />
-                <div className="valid-feedback">
-                  Looks good!
-                </div>
               </div>
-  
               <div className="col-12">
                 <div className="form-check ms-0 ps-0">
                   <label htmlFor="formFile" className="form-label">Photo</label>
-                  <input name="img_src" className="form-control" type="file" id="formFile" />
-                  <div className="invalid-feedback">
-                    You must agree before submitting.
-                  </div>
+                  <input name="img_src" className="form-control" type="file" id="formFile" required />
                 </div>
               </div>
               <div className="col-12 modal-footer d-flex justify-content-between mt-3 pt-4 ms-2">
@@ -110,14 +95,12 @@ export default function CreateModal() {
                 <button
                   type="button"
                   className="btn px-5 "
-                  onClick={closeModal}
-                >
+                  onClick={closeModal}>
                   Cancel
                 </button>
               </div>
             </form>
             </div>
-
           </div>
         </div>
       </Modal>

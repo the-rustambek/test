@@ -72,9 +72,7 @@ export default function EditModal() {
         type="button"
         className="border-0 p-2 me-1 bg-transparent"
         style={{ background: "#51438F", height: "30px" }}
-        onClick={openModal}
-        >
-
+        onClick={openModal}>
         <img src={editIcon} alt="editIcon" />
       </button>
       <Modal
@@ -82,8 +80,7 @@ export default function EditModal() {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
-      >
+        contentLabel="Example Modal">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -107,11 +104,7 @@ export default function EditModal() {
                     className="form-control"
                     controlid="validationCustom01"
                     required
-                    defaultValue={updateUsers[0]?.name}
-
-                  />
-                  <div className="valid-feedback">Looks good!</div>
-                </div>
+                    defaultValue={updateUsers[0]?.name}/></div>
                 <div className="col-12">
                   <label  name="phone" htmlFor="validationCustom02" className="form-label">
                     Phone
@@ -121,12 +114,7 @@ export default function EditModal() {
                     className="form-control"
                     controlid="validationCustom02"
                     required
-                    defaultValue={updateUsers[0]?.phone}
-
-
-                  />
-                  <div className="valid-feedback">Looks good!</div>
-                </div>
+                    defaultValue={updateUsers[0]?.phone}/></div>
                 <div className="col-12">
                   <label name="body" htmlFor="validationCustom02" className="form-label">
                     Email
@@ -136,22 +124,13 @@ export default function EditModal() {
                     className="form-control"
                     controlid="validationCustom03"
                     required
-                    defaultValue={updateUsers[0]?.email}
-
-
-                  />
-                  <div className="valid-feedback">Looks good!</div>
-                </div>
-
+                    defaultValue={updateUsers[0]?.email}/></div>
                 <div className="col-12">
                   <div className="form-check ms-0 ps-0">
                     <label name="img_src" htmlFor="formFile" className="form-label">
                       Photo
                     </label>
-                    <input className="form-control" type="file" id="formFile" />
-                    <div className="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
+                    <input className="form-control" type="file" id="formFile"  required/>
                   </div>
                 </div>
                 <div className="col-12 modal-footer d-flex justify-content-between">
@@ -161,8 +140,7 @@ export default function EditModal() {
                   <button
                     type="button"
                     className="btn px-5 "
-                    onClick={closeModal}
-                    >
+                    onClick={closeModal}>
                     Cancel
                   </button>
                 </div>

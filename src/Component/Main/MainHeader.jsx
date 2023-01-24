@@ -11,33 +11,43 @@ function MainHeader() {
           </button>
           <button className="border-0 p-2 m-3 bg-white fw-900">Admins</button>
         </div>
-   <CreateModal />
+        <CreateModal />
       </div>
       <form className="d-flex mt-2">
         <input
           type="text"
-          className="form-control mx-2 p-2 ps-3" style={{width:"160px"}}
+          className="form-control mx-2 p-2 ps-3"
+          style={{ width: "160px" }}
           id="exampleFormControlInput1"
-          placeholder="Name"
-        />
+          placeholder="Name"/>
         <input
           type="email"
-          className="form-control mx-2 p-2 ps-3" style={{width:"160px"}}
+          className="form-control mx-2 p-2 ps-3"
+          style={{ width: "160px" }}
           id="exampleFormControlInput2"
-          placeholder="Email"
-        />
+          placeholder="Email"/>
         <input
           type="text"
-          className="form-control mx-2 p-2 ps-3" style={{width:"160px"}}
+          className="form-control mx-2 p-2 ps-3"
+          style={{ width: "160px" }}
           id="exampleFormControlInput1"
-          placeholder="Phone"
-        />
-        <select className="form-select  " style={{width:"160px"}} aria-label="Default select example">
-          <option value="Selected Status" disabled >Selected Status</option>
+          placeholder="Phone"/>
+        <select
+          className="form-select  "
+          style={{ width: "160px" }}
+          aria-label="Default select example">
+          <option value="Selected Status" disabled>
+            Selected Status
+          </option>
           <option value="Active">Active</option>
           <option value="Inactive">Inactive</option>
         </select>
-        <button type="submit" className="border-0 rounded ms-3 px-3" style={{background: "#51438F", color:"white"}}>Search</button>
+        <button
+          type="submit"
+          className="border-0 rounded ms-3 px-3"
+          style={{ background: "#51438F", color: "white" }}>
+          Search
+        </button>
       </form>
     </div>
   );
