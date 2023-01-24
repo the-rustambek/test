@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from 'react-modal';
 import useActionsHooks from "../../features/hooks/useActionsHooks";
+import { inputClear } from "../../utils/utils";
 
 const customStyles = {
   content: {
@@ -20,27 +21,18 @@ export default function CreateModal() {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
-    clear();
+    inputClear();
   }
   function afterOpenModal() {
     subtitle.style.color = '#f00';
   }
   function closeModal() {
     setIsOpen(false);
-    clear();
+    inputClear();
   }
   /******************************function************************** */
   const { createUsers } = useActionsHooks();
-  function clear() {
-      let inputs = document.querySelectorAll('input');
-      for (let i = 0; i < inputs.length; i++) {
-          inputs[i].value = null;
-      }
-      let textAreas = document.querySelectorAll('textarea');
-      for (let i = 0; i < textAreas.length; i++) {
-          textAreas[i].value = null;
-      }
-  }
+
   const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);

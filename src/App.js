@@ -15,7 +15,6 @@ function App() {
         <Route path="/" element={<LoginPage />} />
        </Routes>
        <ToastContainer />
-
      </div>
   );
 }
