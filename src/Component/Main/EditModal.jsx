@@ -2,27 +2,40 @@ import React from "react";
 import { useSelector } from "react-redux";
 import editIcon from "../../Assets/Img/edit.svg";
 import useActionsHooks from "../../store/useActionsHooks";
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: "30%"
+  },
+};
 
 export default function EditModal() {
    const counter = useSelector((state) => state.counter.value);
-   
-  const [open, setOpen] = React.useState(false);
-  const { updateUsersById, fetchUsersById } = useActionsHooks();
-  const {
-      users,
-   } = useSelector((state) => state.users);
- 
-   const handleClickOpen = () => {
-      setOpen(true);
-      clear();
-      fetchUsersById(counter);
-  };
-
-  const handleClose = () => {
-      setOpen(false);
-      clear();
-  };
-
+   const { updateUsersById, fetchUsersById } = useActionsHooks();
+   const {
+       users,
+    } = useSelector((state) => state.users); 
+     let subtitle;
+   const [modalIsOpen, setIsOpen] = React.useState(false);
+   function openModal() {
+     setIsOpen(true);
+     clear();
+     fetchUsersById(counter);
+   }
+   function afterOpenModal() {
+     subtitle.style.color = '#f00';
+   }
+   function closeModal() {
+     setIsOpen(false);
+     clear();
+   }
   function clear() {
       let inputs = document.querySelectorAll('input');
       for (let i = 0; i < inputs.length; i++) {
@@ -53,7 +66,7 @@ export default function EditModal() {
         id: counter,
         formData,
     });
-    handleClose();
+    closeModal();
 };
 
  
@@ -63,18 +76,16 @@ export default function EditModal() {
         type="button"
         className="border-0 p-2 me-1 bg-transparent"
         style={{ background: "#51438F", height: "30px" }}
-          onClick={handleClickOpen}
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModalEdit5"
-      >
+        onClick={openModal} >
+
         <img src={editIcon} alt="editIcon" />
       </button>
-      <div
-        className="modal fade"
-        id="exampleModalEdit5"
-        tabIndex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
       >
         <div className="modal-dialog">
           <div className="modal-content">
@@ -85,8 +96,7 @@ export default function EditModal() {
               <button
                 type="button"
                 className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
+                onClick={closeModal}
               ></button>
             </div>
             <div className="modal-body">
@@ -152,8 +162,8 @@ export default function EditModal() {
                   <button
                     type="button"
                     className="btn px-5 "
-                    data-bs-dismiss="modal"
-                  >
+                    onClick={closeModal}
+                    >
                     Cancel
                   </button>
                 </div>
@@ -161,7 +171,7 @@ export default function EditModal() {
             </div>
           </div>
         </div>
-      </div>
+      </Modal>
     </div>
   );
 }

@@ -13,7 +13,9 @@ const customStyles = {
     width: "30%"
   },
 };
+
 export default function CreateModal() {
+  /******************************modal************************** */
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
   function openModal() {
@@ -27,6 +29,7 @@ export default function CreateModal() {
     setIsOpen(false);
     clear();
   }
+  /******************************function************************** */
   const { createUsers } = useActionsHooks();
   function clear() {
       let inputs = document.querySelectorAll('input');
@@ -49,6 +52,7 @@ export default function CreateModal() {
        });
       closeModal();
   };
+  /******************************code************************** */
   return (
     <div>
       <button

@@ -26,7 +26,7 @@ const Login = () => {
         }),
         onSubmit: values => {
              axios.post("https://60decafeabbdd9001722d05c.mockapi.io/users", values);
-             history("/")
+             history("/users")
         },
     });
 

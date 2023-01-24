@@ -15,6 +15,7 @@ const customStyles = {
     width: "30%"
   },
 };
+
 export default function DeleteModal() {
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);

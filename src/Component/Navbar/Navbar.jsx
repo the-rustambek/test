@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
   return (
-    <header className="navbar navbar-dark sticky-top   flex-md-nowrap p-2  px-5" style={{background: "#51438F"}}>
+    <header className="navbar navbar-dark sticky-top   flex-md-nowrap p-2  px-5" style={{background: "#51438F", zIndex: 0}}>
     <Link   className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-2" to="/">SHAFFOF QURILISH</Link>
     <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
