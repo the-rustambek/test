@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import editIcon from "../../Assets/Img/edit.svg";
-import useActionsHooks from "../../store/useActionsHooks";
+import useActionsHooks from "../../features/hooks/useActionsHooks";
 import Modal from 'react-modal';
-import { inputClear } from "../../store/utils";
+import { inputClear } from "../../utils/utils";
 
 const customStyles = {
   content: {

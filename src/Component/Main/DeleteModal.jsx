@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import deleteIcon from "../../Assets/Img/delete.svg";
-import useActionsHooks from "../../store/useActionsHooks";
 import Modal from 'react-modal';
+import useActionsHooks from "../../features/hooks/useActionsHooks";
 
 const customStyles = {
   content: {

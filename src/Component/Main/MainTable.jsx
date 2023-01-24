@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { counterAction } from '../../store/clickIdSlice';
-import useActionsHooks from '../../store/useActionsHooks';
+import useActionsHooks from '../../features/hooks/useActionsHooks';
+import { counterAction } from '../../features/slice/clickIdSlice';
   import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
- import {get} from "lodash";
 
 export default function MainTable() {
   const [data, setData] = React.useState([]);

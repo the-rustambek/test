@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { counterReducer } from './clickIdSlice';
-import { userReducer } from './usersSlice';
+import { counterReducer } from '../slice/clickIdSlice';
+import { userReducer } from '../slice/usersSlice';
+
  
 export const rootReducer = combineReducers({
     users: userReducer,

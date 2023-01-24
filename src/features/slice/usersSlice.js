@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getErrorMessage, notify } from "./utils";
+import { getErrorMessage, notify } from "../../utils/utils";
  
  const prefix = 'users';
  const usersPrefix = prefix;
