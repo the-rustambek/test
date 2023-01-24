@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import editIcon from "../../Assets/Img/edit.svg";
 import useActionsHooks from "../../store/useActionsHooks";
 import Modal from 'react-modal';
+import { inputClear } from "../../store/utils";
 
 const customStyles = {
   content: {
@@ -17,35 +18,29 @@ const customStyles = {
 };
 
 export default function EditModal() {
-   const counter = useSelector((state) => state.counter.value);
+   const id = useSelector((state) => state.counter.value);
    const { updateUsersById, fetchUsersById } = useActionsHooks();
    const {
-       users,
+    users
     } = useSelector((state) => state.users); 
-     let subtitle;
+    const updateUsers = users?.filter(item=>item?.id===id)
+
+  /**************************modal************************* */
+   let subtitle;
    const [modalIsOpen, setIsOpen] = React.useState(false);
    function openModal() {
      setIsOpen(true);
-     clear();
-     fetchUsersById(counter);
+     inputClear();
+     fetchUsersById(id);
    }
    function afterOpenModal() {
      subtitle.style.color = '#f00';
    }
    function closeModal() {
      setIsOpen(false);
-     clear();
+     inputClear();
    }
-  function clear() {
-      let inputs = document.querySelectorAll('input');
-      for (let i = 0; i < inputs.length; i++) {
-          inputs[i].value = null;
-      }
-      let textAreas = document.querySelectorAll('textarea');
-      for (let i = 0; i < textAreas.length; i++) {
-          textAreas[i].value = null;
-      }
-  }
+   /*****************************function*************************** */
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -63,20 +58,22 @@ export default function EditModal() {
               phone: data.get('phone'),
           };
          updateUsersById({
-        id: counter,
+        id,
         formData,
     });
     closeModal();
 };
-
  
+   /*****************************code*************************** */
+
   return (
     <div>
       <button
         type="button"
         className="border-0 p-2 me-1 bg-transparent"
         style={{ background: "#51438F", height: "30px" }}
-        onClick={openModal} >
+        onClick={openModal}
+        >
 
         <img src={editIcon} alt="editIcon" />
       </button>
@@ -110,7 +107,7 @@ export default function EditModal() {
                     className="form-control"
                     controlid="validationCustom01"
                     required
-                    // defaultValue={users.data.name}
+                    defaultValue={updateUsers[0]?.name}
 
                   />
                   <div className="valid-feedback">Looks good!</div>
@@ -124,7 +121,8 @@ export default function EditModal() {
                     className="form-control"
                     controlid="validationCustom02"
                     required
-                    // defaultValue={users.data.phone}
+                    defaultValue={updateUsers[0]?.phone}
+
 
                   />
                   <div className="valid-feedback">Looks good!</div>
@@ -138,7 +136,8 @@ export default function EditModal() {
                     className="form-control"
                     controlid="validationCustom03"
                     required
-                    // defaultValue={users.data.body}
+                    defaultValue={updateUsers[0]?.email}
+
 
                   />
                   <div className="valid-feedback">Looks good!</div>

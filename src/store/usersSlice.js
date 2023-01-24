@@ -84,9 +84,9 @@ export const fetchUsersById = createAsyncThunk(
             const { data } = await axios.get(`users/${id}`);
             return data;
         } catch (e) {
-            // const message = getErrorMessage(e);
+            const message = getErrorMessage(e);
             // notify(message, 'error')
-            // return thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(message);
         }
     }
 );
@@ -171,7 +171,7 @@ const usersSlice = createSlice({
         });
         builder.addCase(fetchUsersById.fulfilled, (state, action) => {
             state.usersLoading = false;
-            state.users = action.payload;
+            state.singleUsers = action.payload;
         });
         builder.addCase(fetchUsersById.rejected, (state, action) => {
             state.usersLoading = false;

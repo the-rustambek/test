@@ -22,4 +22,21 @@ export const notify = (message, type,) => {
         });
     }
 }
+
+export const inputClear = () => {
+    let inputs = document.querySelectorAll('input');
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = null;
+    }
+    let textAreas = document.querySelectorAll('textarea');
+    for (let i = 0; i < textAreas.length; i++) {
+        textAreas[i].value = null;
+    }
+    let selects = document.querySelectorAll('select');
+    for (let i = 0; i < selects.length; i++) {
+        selects[i].value = '';
+    }
+};
+
+
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com/';
