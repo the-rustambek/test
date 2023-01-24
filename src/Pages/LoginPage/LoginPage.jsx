@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-const Login = () => {
+const LoginPage = () => {
     const history = useNavigate()
     const formik = useFormik({
         initialValues: {
@@ -72,4 +72,4 @@ const Login = () => {
         </div>
     );
 };
-export default Login;
+export default LoginPage;

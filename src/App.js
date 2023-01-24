@@ -1,18 +1,18 @@
 import {  Route, Routes } from 'react-router-dom';
 import './App.css';
- import Login from './Component/Login/Login';
  import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './Component/HomePage/HomePage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import Homepage from './Pages/HomePage/HomePage';
+import LoginPage from './Pages/LoginPage/LoginPage';
 
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/users" element={<Home />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/users" element={<Homepage />} />
+        <Route path="/" element={<LoginPage />} />
        </Routes>
        <ToastContainer />
 

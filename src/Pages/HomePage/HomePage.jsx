@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import Dashboard from '../Dashboard/Dashboard';
-import Loader from '../loader/loader';
-import Main from '../Main/Main';
-import Navbar from '../Navbar/Navbar';
+import Dashboard from '../../Component/Dashboard/Dashboard';
+import Loader from '../../Component/loader/loader';
+import Main from '../../Component/Main/Main';
+import Navbar from '../../Component/Navbar/Navbar';
 
 function Homepage() {
   const {  singleUsersLoading } = useSelector(
